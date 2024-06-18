@@ -1,8 +1,10 @@
+using CsvHelper;
 using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using Newtonsoft.Json;
 using System.Data;
 using System.Data.SqlClient;
+using System.Formats.Asn1;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -30,7 +32,7 @@ namespace appSpotifySongs
         private void MiFormulario_Closed(object sender, EventArgs e)
         {
             // Manejar el evento aquí
-            MessageBox.Show("La ventana se ha cerrado.");
+            MessageBox.Show("The window is closed.");
             Beggining.Instancia.Show();
         }
 
@@ -48,11 +50,11 @@ namespace appSpotifySongs
             ExportarDataGridViewCSV(saveFileDialog.FileName);
         }
 
-        private void ExportarDataGridViewCSV( string fileName)
+        private void ExportarDataGridViewCSV(string fileName)
         {
             if (dgvSongs.Rows.Count == 0)
             {
-                MessageBox.Show("No hay datos para exportar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -84,11 +86,11 @@ namespace appSpotifySongs
             try
             {
                 File.WriteAllText(fileName, sb.ToString());
-                MessageBox.Show("Los datos se han exportado correctamente a " + fileName, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("The files was export " + fileName, "Succefuly", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al exportar los datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error to export data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -277,8 +279,9 @@ namespace appSpotifySongs
                 // Ejecutar la consulta SQL con parámetros
                 Connection.ExecuteQuery(query, new SqlParameter("@NewValue", newValue), new SqlParameter("@FirstCellValue", firstCellValue));
 
-                // Mostrar un mensaje indicando que se actualizó la celda
-                MessageBox.Show($"Se actualizó la celda en la fila {firstCellValue} y columna {columnName} con el valor {newValue}");
+                // Display a message indicating the updated cell
+                MessageBox.Show($"Cell updated in row {firstCellValue} and column {columnName} with value {newValue}");
+
             }
 
             cambios.Clear();
@@ -291,7 +294,9 @@ namespace appSpotifySongs
             DataTable dataTable = Connection.GetDataTable(query);
             dgvSongs.DataSource = null;
             dgvSongs.DataSource = dataTable;
-            MessageBox.Show("Se han revertido los cambios.");
+            MessageBox.Show("Changes have been reverted.");
         }
+
+
     }
 }

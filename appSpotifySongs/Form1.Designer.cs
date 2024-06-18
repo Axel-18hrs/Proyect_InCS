@@ -107,6 +107,7 @@
             button2.Text = "Reset";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
+          
             // 
             // Form1
             // 
@@ -114,6 +115,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDarkDark;
             ClientSize = new Size(1484, 521);
+            Controls.Add(btnOpenFile);
             Controls.Add(button2);
             Controls.Add(btnSaveSQL);
             Controls.Add(button1);
@@ -138,5 +140,6 @@
         private Button button1;
         private Button btnSaveSQL;
         private Button button2;
+        private Button btnOpenFile;
     }
 }

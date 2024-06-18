@@ -52,7 +52,7 @@ namespace appSpotifySongs
                 if (credencialesCorrectas == 1)
                 {
                     // Las credenciales son correctas, puedes continuar con el resto del proceso
-                    MessageBox.Show("Datos de inicio de sesión correctos. Acceso permitido.");
+                    MessageBox.Show("Valid login credentials. Access granted.");
                     Form1 newUserInstance = new Form1();
                     newUserInstance.Visible = true;
                     this.Visible = false;
@@ -62,13 +62,15 @@ namespace appSpotifySongs
                 else
                 {
                     // Las credenciales son incorrectas
-                    MessageBox.Show("Nombre de usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.");
+                    MessageBox.Show("Incorrect username or password. Please try again.");
+
                 }
             }
             else
             {
                 // No se pudo obtener un resultado válido de la consulta
-                MessageBox.Show("Error al verificar las credenciales. Por favor, inténtalo de nuevo.");
+                MessageBox.Show("Error verifying credentials. Please try again.");
+
             }
         }
     } 
